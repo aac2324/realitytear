@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Host extends Model
 {
-    /** @use HasFactory<\Database\Factories\HostFactory> */
     use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

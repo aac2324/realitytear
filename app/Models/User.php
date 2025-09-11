@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'full_name',   // ✅ angepasst: "name" → "full_name"
         'email',
         'password',
     ];
@@ -52,10 +52,23 @@ class User extends Authenticatable
      */
     public function initials(): string
     {
-        return Str::of($this->name)
+        return Str::of($this->full_name)   // ✅ angepasst: "name" → "full_name"
             ->explode(' ')
             ->take(2)
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    /**
+     * Relationships
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function participations()
+    {
+        return $this->hasMany(Participation::class);
     }
 }
