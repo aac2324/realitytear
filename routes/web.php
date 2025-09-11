@@ -1,53 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use App\Models\Host;
-use App\Models\Event;
-use App\Models\Review;
-use App\Models\Participation;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HostController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ParticipationController;
 
 // Users
-Route::get('/users', function () {
-    return User::all();
-});
-
-Route::get('/users/{id}', function ($id) {
-    return User::with(['reviews', 'participations'])->findOrFail($id);
-});
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 
 // Hosts
-Route::get('/hosts', function () {
-    return Host::with('events')->get();
-});
-
-Route::get('/hosts/{id}', function ($id) {
-    return Host::with('events')->findOrFail($id);
-});
+Route::get('/hosts', [HostController::class, 'index']);
+Route::get('/hosts/{id}', [HostController::class, 'show']);
 
 // Events
-Route::get('/events', function () {
-    return Event::with(['host', 'reviews.user', 'participations.user'])->get();
-});
-
-Route::get('/events/{id}', function ($id) {
-    return Event::with(['host', 'reviews.user', 'participations.user'])->findOrFail($id);
-});
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{id}', [EventController::class, 'show']);
 
 // Reviews
-Route::get('/reviews', function () {
-    return Review::with(['user', 'event'])->get();
-});
-
-Route::get('/reviews/{id}', function ($id) {
-    return Review::with(['user', 'event'])->findOrFail($id);
-});
+Route::get('/reviews', [ReviewController::class, 'index']);
+Route::get('/reviews/{id}', [ReviewController::class, 'show']);
 
 // Participations
-Route::get('/participations', function () {
-    return Participation::with(['user', 'event'])->get();
-});
+Route::get('/participations', [ParticipationController::class, 'index']);
+Route::get('/participations/{id}', [ParticipationController::class, 'show']);
 
-Route::get('/participations/{id}', function ($id) {
-    return Participation::with(['user', 'event'])->findOrFail($id);
-});
