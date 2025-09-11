@@ -2,22 +2,22 @@
 
 namespace Database\Factories;
 
+use App\Models\Participation;
+use App\Models\User;
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Participation>
- */
 class ParticipationFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Participation::class;
+
     public function definition(): array
     {
         return [
-            //
+            'user_id'    => User::factory(),
+            'event_id'   => Event::factory(), // override later to use imported ids
+            'attendance' => $this->faker->boolean(70), // 70% attended
         ];
     }
 }
+
