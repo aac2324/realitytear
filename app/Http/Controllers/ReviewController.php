@@ -8,11 +8,13 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        return Review::with(['user', 'event'])->get();
+        $reviews = Review::with(['user', 'event'])->get();
+        return view('reviews.index', compact('reviews'));
     }
 
     public function show($id)
     {
-        return Review::with(['user', 'event'])->findOrFail($id);
+        $review = Review::with(['user', 'event'])->findOrFail($id);
+        return view('reviews.show', compact('review'));
     }
 }

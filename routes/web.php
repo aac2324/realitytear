@@ -12,7 +12,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
 // Hosts
-Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
+Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index'); //this is an index route
 Route::get('/hosts/{id}', [HostController::class, 'show'])->name('hosts.show');
 
 // Events
@@ -20,8 +20,8 @@ Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 
 // Reviews
-Route::get('/reviews', [ReviewController::class, 'index']);
-Route::get('/reviews/{id}', [ReviewController::class, 'show']);
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/reviews/{id}', [ReviewController::class, 'show'])->name('reviews.show');
 
 // Participations
 Route::get('/participations', [ParticipationController::class, 'index']);
