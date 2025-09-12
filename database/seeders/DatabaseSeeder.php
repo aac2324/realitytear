@@ -17,13 +17,9 @@ class DatabaseSeeder extends Seeder
         $users = User::factory()->count(30)->create();
         $hosts = Host::factory()->count(10)->create();
 
-        // 2) (Optional) Temporary fake events if you want to test before CSV import:
-        //    Comment these lines out once you import real events.
-        //$events = Event::factory()
-            //->count(20)
-            //->state(fn (array $attributes) => [
-                //'host_id' => $hosts->random()->id,
-            //])->create();
+        // 2) Import Events aus CSV statt Factory
+        $this->call(EventCsvSeeder::class);
+        $events = \App\Models\Event::all();
 
         // 3) Reviews (one per user per event enforced by unique index → so we sample)
         $eventsForReviews = $events->pluck('id');
