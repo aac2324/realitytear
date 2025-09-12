@@ -9,13 +9,13 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::with(['host', 'reviews.user', 'participations.user'])->get();
+        $events = Event::all();
         return view('events.index', compact('events'));
     }
 
     public function show($id)
     {
-        $event = Event::with(['host', 'reviews.user', 'participations.user'])->findOrFail($id);
+        $event = Event::findOrFail($id);
         return view('events.show', compact('event'));
     }
 

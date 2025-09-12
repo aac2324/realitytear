@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Events Upload')
+@section('title', 'CSV Upload')
 
 @section('content')
     <h1>Events CSV hochladen</h1>
