@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Events</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Alle Events')
+
+@section('content')
     <h1>Alle Events</h1>
 
     <ul>
@@ -15,5 +14,4 @@
             </li>
         @endforeach
     </ul>
-</body>
-</html>
+@endsection

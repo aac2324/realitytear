@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Reviews</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Alle Reviews')
+
+@section('content')
     <h1>Alle Reviews</h1>
 
     <ul>
         @foreach($reviews as $review)
             <li>
-                ⭐ {{ $review->rating }}
-                – {{ Str::limit($review->comment, 50, '...') }}
+                ⭐ {{ $review->rating }}  
+                – {{ Str::limit($review->comment, 50, '...') }}  
                 <br>
-                Event: <a href="{{ route('events.show', $review->event->id) }}">{{ $review->event->title }}</a>
-                <br>
-                User: {{ $review->user->full_name }}
-                <br>
-                <a href="{{ route('reviews.show', $review->id) }}">Details ansehen</a>
+                Event: <a href="{{ route('events.show', $review->event->id) }}">{{ $review->event->title }}</a>  
+                User: {{ $review->user->full_name }}  
+                <a href="{{ route('reviews.show', $review->id) }}">Details</a>
             </li>
         @endforeach
     </ul>
-</body>
-</html>
+@endsection
+

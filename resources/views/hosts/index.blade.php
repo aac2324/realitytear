@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hosts</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Alle Hosts')
+
+@section('content')
     <h1>Alle Hosts</h1>
 
     <ul>
@@ -11,10 +10,9 @@
             <li>
                 <a href="{{ route('hosts.show', $host->id) }}">
                     {{ $host->name }}
-                </a>
-                – {{ $host->events->count() }} Events
+                </a> – {{ $host->events->count() }} Events
             </li>
         @endforeach
     </ul>
-</body>
-</html>
+@endsection
+

@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Users</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Alle Nutzer')
+
+@section('content')
     <h1>Alle Nutzer</h1>
 
     <ul>
@@ -11,11 +10,9 @@
             <li>
                 <a href="{{ route('users.show', $user->id) }}">
                     {{ $user->full_name }}
-                </a>
-                – {{ $user->email }}
-                – {{ $user->reviews_count }} Reviews
+                </a> – {{ $user->email }}  
+                ({{ $user->reviews_count }} Reviews)
             </li>
         @endforeach
     </ul>
-</body>
-</html>
+@endsection

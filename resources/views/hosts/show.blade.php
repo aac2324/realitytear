@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ $host->name }}</title>
-</head>
-<body>
-    <h1>Host: {{ $host->name }}</h1>
+@extends('layouts.app')
+
+@section('title', $host->name)
+
+@section('content')
+    <h1>{{ $host->name }}</h1>
 
     <h2>Events</h2>
     <ul>
@@ -12,13 +11,8 @@
             <li>
                 <a href="{{ route('events.show', $event->id) }}">
                     {{ $event->title }}
-                </a>
-                – {{ $event->reviews->count() }} Bewertungen
+                </a> – {{ $event->reviews->count() }} Reviews
             </li>
         @endforeach
     </ul>
-
-    <p><a href="{{ route('hosts.index') }}">← zurück zur Übersicht</a></p>
-</body>
-</html>
-
+@endsection

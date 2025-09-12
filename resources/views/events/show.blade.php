@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ $event->title }}</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', $event->title)
+
+@section('content')
     <h1>{{ $event->title }}</h1>
 
     <p><strong>Ort:</strong> {{ $event->location }}</p>
@@ -14,16 +13,10 @@
     <ul>
         @foreach ($event->reviews as $review)
             <li>
-                ⭐ {{ $review->rating }}
-                <br>
-                {{ $review->comment ?? 'Kein Kommentar' }}
+                ⭐ {{ $review->rating }} – {{ $review->comment ?? 'Kein Kommentar' }}
                 <br>
                 <em>von {{ $review->user->full_name }}</em>
             </li>
         @endforeach
     </ul>
-
-    <p><a href="{{ route('events.index') }}">← zurück zur Übersicht</a></p>
-</body>
-</html>
-
+@endsection
