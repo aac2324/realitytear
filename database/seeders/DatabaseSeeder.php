@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
 
         // 2) (Optional) Temporary fake events if you want to test before CSV import:
         //    Comment these lines out once you import real events.
-        $events = Event::factory()
-            ->count(20)
-            ->state(fn (array $attributes) => [
-                'host_id' => $hosts->random()->id,
-            ])->create();
+        //$events = Event::factory()
+            //->count(20)
+            //->state(fn (array $attributes) => [
+                //'host_id' => $hosts->random()->id,
+            //])->create();
 
         // 3) Reviews (one per user per event enforced by unique index → so we sample)
         $eventsForReviews = $events->pluck('id');

@@ -10,10 +10,8 @@ return new class extends Migration {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('host_id')
-                  ->constrained('hosts')
-                  ->cascadeOnUpdate()
-                  ->cascadeOnDelete();
+            $table->foreignId('host_id')->nullable()->constrained()->onDelete('cascade');
+
 
             $table->string('title');
             $table->text('description')->nullable();

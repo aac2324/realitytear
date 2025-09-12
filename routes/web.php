@@ -6,16 +6,16 @@ use App\Http\Controllers\HostController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 
-// Test-Route (lassen wir zur Sicherheit drin)
+// Test-Route
 Route::get('/ping', function () {
     return 'pong';
 });
 
+
 // Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
-Route::get('/events/upload', [EventController::class, 'uploadForm'])->name('events.upload');
-Route::post('/events/import', [EventController::class, 'import'])->name('events.import');
+
 
 // Hosts
 Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
@@ -28,3 +28,4 @@ Route::get('/reviews/{id}', [ReviewController::class, 'show'])->name('reviews.sh
 // Users
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+
