@@ -8,11 +8,13 @@ class EventController extends Controller
 {
     public function index()
     {
-        return Event::with(['host', 'reviews.user', 'participations.user'])->get();
-    }
+        $events = Event::with(['host', 'reviews.user', 'participations.user'])->get();
+        return view('events.index', compact('events'));    }
 
     public function show($id)
     {
-        return Event::with(['host', 'reviews.user', 'participations.user'])->findOrFail($id);
+    $event = Event::with(['host', 'reviews.user', 'participations.user'])->findOrFail($id);
+    return view('events.show', compact('event'));
     }
+
 }
