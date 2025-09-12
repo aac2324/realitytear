@@ -8,11 +8,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::all();
+        $users = User::withCount(['reviews'])->get();
+        return view('users.index', compact('users'));
     }
 
     public function show($id)
     {
-        return User::with(['reviews', 'participations'])->findOrFail($id);
+        $user = User::with(['reviews.event'])->findOrFail($id);
+        return view('users.show', compact('user'));
     }
 }

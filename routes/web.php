@@ -8,8 +8,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ParticipationController;
 
 // Users
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 
 // Hosts
 Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index'); //this is an index route
