@@ -12,8 +12,8 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
 // Hosts
-Route::get('/hosts', [HostController::class, 'index']);
-Route::get('/hosts/{id}', [HostController::class, 'show']);
+Route::get('/hosts', [HostController::class, 'index'])->name('hosts.index');
+Route::get('/hosts/{id}', [HostController::class, 'show'])->name('hosts.show');
 
 // Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
