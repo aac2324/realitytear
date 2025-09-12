@@ -17,6 +17,6 @@
 
     <p><strong>User:</strong> {{ $review->user->full_name }} ({{ $review->user->email }})</p>
 
-    <p><a href="{{ route('reviews.index') }}">← zurück zu allen Reviews</a></p>
+    <p><a href="{{ route('reviews.index') }}">← back to reviews</a></p>
 </body>
 </html>
