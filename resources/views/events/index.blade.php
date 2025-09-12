@@ -8,7 +8,11 @@
 
     <ul>
         @foreach ($events as $event)
-            <li>{{ $event->title }} – {{ $event->starts_at }}</li>
+            <li>
+                <a href="{{ route('events.show', $event->id) }}">
+                    {{ $event->title }}
+                </a> – {{ $event->location }}
+            </li>
         @endforeach
     </ul>
 </body>
