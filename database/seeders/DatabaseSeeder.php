@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $users = User::factory()->count(30)->create();
         $hosts = Host::factory()->count(10)->create();
 
-        // 2) Import Events aus CSV statt Factory
+        // 2) Import Events from CSV instead of Factory
         $this->call(EventCsvSeeder::class);
         $events = \App\Models\Event::all();
 

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'full_name',   // ✅ angepasst: "name" → "full_name"
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,6 +46,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    
+    
+    // Hilfsmethoden für Rollen
+    public function isAdmin(): bool {
+        return $this->role === 'admin';
+    }
+
+    public function isHost(): bool {
+        return $this->role === 'host';
+    }
+
+    public function isUser(): bool {
+        return $this->role === 'user';
     }
 
     /**
