@@ -7,10 +7,10 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 
 // Test-Route
-Route::get('/ping', function () {
-    return 'pong';
-});
-
+//Route::get('/ping', function () {
+//    return 'pong';
+//});
+Route::get('/', [EventController::class, 'index'])->name('home');
 
 // Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
