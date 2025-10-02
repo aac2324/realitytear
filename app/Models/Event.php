@@ -2,46 +2,45 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Event extends Model
+class Event
 {
-    use HasFactory;
+    public $title;
+    public $starts_at;
+    public $location;
+    public $description;
+    public $organizer_id;
 
-    // Welche Felder per create() / update() befüllt werden dürfen
-    protected $fillable = [
-        'title',
-        'starts_at',
-        'location',
-        'description',
-        'host_id',
-    ];
-
-    // Damit Laravel 'starts_at' automatisch als Datum behandelt
-    protected $casts = [
-        'starts_at' => 'datetime',
-    ];
-
-    /*
-    |--------------------------------------------------------------------------
-    | Beziehungen
-    |--------------------------------------------------------------------------
-    */
-
-    // Ein Event gehört zu genau einem Host
-    public function host()
+    public function __construct($data)
     {
-        return $this->belongsTo(Host::class);
+        $this->title = $data['title'] ?? null;
+        $this->starts_at = $data['starts_at'] ?? null;
+        $this->location = $data['location'] ?? null;
+        $this->description = $data['description'] ?? null;
+        $this->organizer_id = $data['organizer_id'] ?? null;
     }
 
-    // Ein Event kann viele Reviews haben
-    public function reviews()
+    public static function all()
     {
-        return $this->hasMany(Review::class);
-    }
+        $file = storage_path('app/events_import.csv');
+        if (!file_exists($file)) {
+            return [];
+        }
 
-    // Ein Event kann viele Teilnehmer (Users) haben über participations
+        $rows = [];
+        $header = null;
+        if (($handle = fopen($file, 'r')) !== false) {
+            while (($data = fgetcsv($handle)) !== false) {
+                if (!$header) {
+                    $header = $data;
+                    continue;
+                }
+                $row = array_combine($header, $data);
+                $rows[] = new self($row);
+            }
+            fclose($handle);
+        }
+        return $rows;
+    }
     public function participations()
     {
         return $this->hasMany(Participation::class);

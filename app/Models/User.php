@@ -22,7 +22,7 @@ class User extends Authenticatable
         'full_name',   // ✅ angepasst: "name" → "full_name"
         'email',
         'password',
-        'role',
+        'role', // ✅ zugefügt: "role" → statt eigener host-Tabelle
     ];
 
     /**
@@ -67,11 +67,22 @@ class User extends Authenticatable
      */
     public function initials(): string
     {
-        return Str::of($this->full_name)   // ✅ angepasst: "name" → "full_name"
+        return Str::of($this->full_name)   // warum brauchen wir das?
             ->explode(' ')
             ->take(2)
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    public function organizedEvents()
+    {  
+        return $this->hasMany(\App\Models\Event::class, 'organizer_id'); // FK in events
+    }
+
+        // Scope für Abfragen
+    public function scopeHosts($query)
+    {
+        return $query->where('role', 'host');
     }
 
     /**
@@ -86,4 +97,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Participation::class);
     }
+    
+
+
 }

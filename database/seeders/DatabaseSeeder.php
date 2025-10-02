@@ -13,9 +13,16 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1) Create users and hosts
-        $users = User::factory()->count(30)->create();
-        $hosts = Host::factory()->count(10)->create();
+        User::factory()->count(30)->create(['role' => 'user']);
+
+        // explizit Hosts anlegen
+        User::factory()->count(10)->create(['role' => 'host']);
+
+        // Events auf Hosts verweisen
+        $hosts = User::where('role', 'host')->get();
+        Event::factory()->count(30)->create([
+            'organizer_id' => fn() => $hosts->random()->id
+        ]);
 
         // 2) Import Events from CSV instead of Factory
         $this->call(EventCsvSeeder::class);

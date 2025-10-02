@@ -6,7 +6,7 @@
 <body>
     <nav>
         <a href="{{ route('events.index') }}">Events</a> |
-        <a href="{{ route('hosts.index') }}">Hosts</a> |
+        <a href="{{ route('organizers.index') }}">Organizers</a> |
         <a href="{{ route('reviews.index') }}">Reviews</a> |
         <a href="{{ route('users.index') }}">Users</a>
     </nav>

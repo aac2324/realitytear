@@ -22,3 +22,5 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 }
+        //Gate::define('manage-as-host', fn(User $u) => $u->isHost() || $u->isAdmin());
+        //Gate::define('manage-as-admin', fn(User $u) => $u->isAdmin());

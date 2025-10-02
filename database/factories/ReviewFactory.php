@@ -14,8 +14,8 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'  => User::factory(),
-            'event_id' => Event::factory(), // when you import real events, override this
+            'user_id'  => User::inRandomOrder()->first()?->id ?? User::factory(),
+            'event_id' => Event::inRandomOrder()->first()?->id ?? Event::factory(), // when you import real events, override this
             'rating'   => $this->faker->numberBetween(1, 5),
             'comment'  => $this->faker->optional(0.6)->realText(140),
         ];
