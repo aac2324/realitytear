@@ -13,8 +13,11 @@ use App\Http\Controllers\UserController;
 Route::get('/', [EventController::class, 'index'])->name('home');
 
 // Events
+use App\Models\Event;
+
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
-Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+
 
 
 // Hosts -> now Organizers 

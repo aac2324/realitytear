@@ -4,6 +4,7 @@ namespace App\Models;
 
 class Event
 {
+    public $id;    
     public $title;
     public $starts_at;
     public $location;
@@ -12,6 +13,7 @@ class Event
 
     public function __construct($data)
     {
+        $this->id = $data['id'] ?? null;
         $this->title = $data['title'] ?? null;
         $this->starts_at = $data['starts_at'] ?? null;
         $this->location = $data['location'] ?? null;

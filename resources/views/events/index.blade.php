@@ -12,9 +12,9 @@
         <ul>
             @foreach ($events as $event)
                 <li>
-                    <a href="{{ route('events.show', $event->id ?? '') }}">
-                        {{ $event->title }}
-                    </a> – {{ $event->location }}
+                   <a href="{{ route('events.show', $event->id ?? 'hello') }}">
+                        {{ $event?->title }}
+                    </a> – {{ $event?->location }}
                 </li>
             @endforeach
         </ul>
