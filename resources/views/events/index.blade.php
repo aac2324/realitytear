@@ -6,13 +6,13 @@
 <body>
     <h1>Alle Events</h1>
 
-    @if($events->isEmpty())
+    @if(empty($events))
         <p>Keine Events vorhanden.</p>
     @else
         <ul>
             @foreach ($events as $event)
                 <li>
-                    <a href="{{ route('events.show', $event->id) }}">
+                    <a href="{{ route('events.show', $event->id ?? '') }}">
                         {{ $event->title }}
                     </a> – {{ $event->location }}
                 </li>
